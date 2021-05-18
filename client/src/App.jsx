@@ -6,7 +6,7 @@ function App(props) {
   return (
     <div>
       <div className="header">
-        <h2>Blog Name</h2>
+        <h2>Ryan Evanyo</h2>
       </div>
 
       <div className="row">
@@ -44,7 +44,7 @@ function App(props) {
       </div>
 
       <div className="footer">
-        <h2>Footer</h2>
+        <h2>Copy Right 2021</h2>
       </div>
     </div>
   );
