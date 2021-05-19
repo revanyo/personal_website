@@ -7,11 +7,20 @@ import About from './About.jsx';
 import Popular from './Popular.jsx';
 
 function App(props) {
+
+  const [blogs, setBlogs] = useState([])
+
+  useEffect(() => {
+    axios.get('/blogs').then((response) => {
+      setBlogs(response.data)
+    })
+  }, [])
+
   return (
     <div>
       <div className="row">
         <div className="leftcolumn">
-          <Entry />
+          <Entry blogs={blogs} />
         </div>
         <div className="rightcolumn">
           <About />
