@@ -23,7 +23,9 @@ app.post('/blogs', (req, res) => {
   let item = {
     title: req.body.title,
     body: req.body.body,
+    date: new Date()
   }
+
   db.Blog.create(item, (err, data) => {
     if (err) {
       res.status(400)

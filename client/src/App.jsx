@@ -20,7 +20,7 @@ function App(props) {
     <div>
       <div className="row">
         <div className="leftcolumn">
-          <Entry blogs={blogs} />
+          <List blogs={blogs} />
         </div>
         <div className="rightcolumn">
           <About />

@@ -4,7 +4,11 @@ import Entry from "./Entry.jsx";
 function List(props) {
   return (
     <div>
-
+      <div className="card">
+        {props.blogs.map(blog =>
+          <Entry blog={blog} />
+        )}
+      </div>
     </div>
   );
 }
