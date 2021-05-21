@@ -9,7 +9,6 @@ export default function Post(props) {
 
 
     function post(e) {
-        topFunction()
         axios.post('/blogs', {
             title: title,
             body: body

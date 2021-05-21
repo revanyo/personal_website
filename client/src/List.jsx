@@ -6,7 +6,7 @@ function List(props) {
     <div>
       <div className="card">
         {props.blogs.map(blog =>
-          <Entry key={blog._id} blog={blog} />
+          <Entry key={blog._id} blog={blog} deleteEntry={props.deleteEntry} />
         )}
       </div>
     </div>

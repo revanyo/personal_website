@@ -11,17 +11,24 @@ function App(props) {
 
   const [blogs, setBlogs] = useState([])
   const [post, setPost] = useState(false)
+  const [deleted, setDeleted] = useState(null)
 
   useEffect(() => {
     axios.get('/blogs').then((response) => {
       setBlogs(response.data)
     })
-  }, [])
+  }, [deleted])
+
+  const deleteEntry = (key) => {
+    axios.delete('/blogs/' + key).then(() => {
+      setDeleted(true);
+    })
+  }
 
   let view;
 
   if (post === false) {
-    view = <List blogs={blogs} />
+    view = <List blogs={blogs} deleteEntry={deleteEntry} />
   } else {
     view = <Post />
   }

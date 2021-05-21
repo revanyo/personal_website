@@ -38,7 +38,6 @@ app.post('/blogs', (req, res) => {
 })
 
 app.delete('/blogs/:id', (req, res) => {
-  console.log('rec', req.params)
   let query = { _id: req.params.id }
   db.Blog.deleteOne(query, (err, data) => {
     if (err) {
