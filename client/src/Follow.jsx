@@ -6,7 +6,6 @@ export default function FollowMe(props) {
             <div className="card">
                 <h3>Follow Me</h3>
                 <p>Some text..</p>
-                <button>Log In</button>
             </div>
         </div>
     );

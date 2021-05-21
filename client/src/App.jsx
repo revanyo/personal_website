@@ -5,10 +5,12 @@ import Entry from "./Entry.jsx";
 import FollowMe from './Follow.jsx';
 import About from './About.jsx';
 import Popular from './Popular.jsx';
+import Post from './Post.jsx';
 
 function App(props) {
 
   const [blogs, setBlogs] = useState([])
+  const [post, setPost] = useState(false)
 
   useEffect(() => {
     axios.get('/blogs').then((response) => {
@@ -16,16 +18,25 @@ function App(props) {
     })
   }, [])
 
+  let view;
+
+  if (post === false) {
+    view = <List blogs={blogs} />
+  } else {
+    view = <Post />
+  }
+
   return (
     <div>
       <div className="row">
         <div className="leftcolumn">
-          <List blogs={blogs} />
+          {view}
         </div>
         <div className="rightcolumn">
           <About />
           <Popular />
           <FollowMe />
+          <button onClick={() => { setPost(true); { window.scrollTo({ top: 0, behavior: 'smooth' }) } }}>Post</button>
         </div>
       </div>
     </div>

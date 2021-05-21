@@ -20,6 +20,7 @@ app.get('/blogs', (req, res) => {
 })
 
 app.post('/blogs', (req, res) => {
+  console.log('rec')
   let item = {
     title: req.body.title,
     body: req.body.body,
@@ -27,6 +28,19 @@ app.post('/blogs', (req, res) => {
   }
 
   db.Blog.create(item, (err, data) => {
+    if (err) {
+      res.status(400)
+    } else {
+      res.status(200)
+      res.send(data)
+    }
+  })
+})
+
+app.delete('/blogs/:id', (req, res) => {
+  console.log('rec', req.params)
+  let query = { _id: req.params.id }
+  db.Blog.deleteOne(query, (err, data) => {
     if (err) {
       res.status(400)
     } else {
