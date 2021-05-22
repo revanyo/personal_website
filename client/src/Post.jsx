@@ -10,8 +10,8 @@ export default function Post(props) {
     return (
         <div>
             <form>
-                <input onChange={(e) => setTitle(e.target.value)}></input>
-                <input onChange={(e) => setBody(e.target.value)}></input>
+                <input value="Enter Title" onChange={(e) => setTitle(e.target.value)}></input>
+                <input value="Enter Text" onChange={(e) => setBody(e.target.value)}></input>
                 <input type="submit" onClick={() => props.post(title, body)}></input>
             </form>
         </div>
