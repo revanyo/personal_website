@@ -23,6 +23,7 @@ let PostSchema = new Schema(
         date: Date,
         username: String,
         views: Number,
+        likeCount: Number,
     },
     { collection: 'Blogs' },
 )

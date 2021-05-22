@@ -49,6 +49,18 @@ app.delete('/blogs/:id', (req, res) => {
   })
 })
 
+app.put('/blogs/:id', (req, res) => {
+  let query = { _id: req.params.id }
+  db.Blog.updateOne(query, { $inc: { likeCount: 1 } }, (err, data) => {
+    if (err) {
+      res.status(400)
+    } else {
+      res.status(400)
+      res.send(data)
+    }
+  })
+})
+
 app.listen(PORT, () => {
   console.log("listening on", PORT);
 });

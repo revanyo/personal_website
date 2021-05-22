@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import List from "./List.jsx";
 import axios from "axios";
-import Entry from "./Entry.jsx";
 import FollowMe from './Follow.jsx';
 import About from './About.jsx';
 import Popular from './Popular.jsx';
@@ -12,12 +11,14 @@ function App(props) {
   const [blogs, setBlogs] = useState([])
   const [post, setPost] = useState(false)
   const [deleted, setDeleted] = useState(null)
+  const [posted, setPosted] = useState(null)
+  const [liked, setLiked] = useState(null)
 
   useEffect(() => {
     axios.get('/blogs').then((response) => {
       setBlogs(response.data)
     })
-  }, [deleted])
+  }, [deleted, posted, liked])
 
   const deleteEntry = (key) => {
     axios.delete('/blogs/' + key).then(() => {
@@ -25,12 +26,28 @@ function App(props) {
     })
   }
 
+  const postEntry = (title, body) => {
+    axios.post('/blogs', {
+      title: title,
+      body: body
+    }).then(() => {
+      setPosted(true);
+    })
+  }
+
+  const likeEntry = (key) => {
+    console.log('clciked')
+    axios.put('/blogs/' + key).then(() => {
+      setLiked(true)
+    })
+  }
+
   let view;
 
   if (post === false) {
-    view = <List blogs={blogs} deleteEntry={deleteEntry} />
+    view = <List blogs={blogs} likeEntry={likeEntry} deleteEntry={deleteEntry} />
   } else {
-    view = <Post />
+    view = <Post post={postEntry} />
   }
 
   return (
@@ -40,10 +57,10 @@ function App(props) {
           {view}
         </div>
         <div className="rightcolumn">
+          <button onClick={() => { setPost(true); { window.scrollTo({ top: 0, behavior: 'smooth' }) } }}>Post</button>
           <About />
           <Popular />
           <FollowMe />
-          <button onClick={() => { setPost(true); { window.scrollTo({ top: 0, behavior: 'smooth' }) } }}>Post</button>
         </div>
       </div>
     </div>
